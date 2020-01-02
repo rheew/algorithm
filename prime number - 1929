@@ -1,0 +1,32 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+int arr[1000000];
+void count(int N) {
+	for (int i = 2; i < sqrt(N); i++) {
+		int temp = 2;
+		if (arr[i] == 1)continue;
+		for (int j = i*temp; j <= N; j = i*temp) {
+			temp++;
+			arr[j] = 1;
+		}
+	}
+		return ;
+	}
+int main(void) {
+
+	int N,M, j, temp = 0;
+	arr[1] = 1;
+	cin >> M >> N;
+
+	count(N);
+	for (int i = M; i <= N; i++) {
+		
+	
+		if (arr[i]!=1)cout << i<<"\n";
+		
+	}
+	
+	
+	return 0;
+}
