@@ -1,0 +1,28 @@
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main(void) {
+	set<int> x_m, y_m;
+	set<int>::iterator iter;
+
+	int input_x, input_y, ans_x, ans_y;
+	int arr[3][2];
+	for (int i = 0; i < 3; i++)
+	{
+		cin >> input_x >> input_y;
+		if (x_m.find(input_x) == x_m.end())x_m.insert(input_x);
+		else x_m.erase(input_x);
+
+		if (y_m.find(input_y) == y_m.end())y_m.insert(input_y);
+		else y_m.erase(input_y);
+	}
+
+	for (int i : x_m)
+		ans_x = i;
+	for (int i : y_m)
+		ans_y = i;
+	cout << ans_x << " " << ans_y;;
+
+	return 0;
+}
