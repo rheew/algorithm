@@ -1,0 +1,23 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+void top(int n, int from, int to, int temp) {
+	if (n == 1) {
+		printf ("%d %d\n",from, to); // 마지막 원판을 3번째로 옮기는 출력
+		return;
+	}
+	top(n - 1, from, temp, to);// n-1개를 1 -> 2로 이동하는 재귀 호출
+	printf("%d %d\n", from, to);
+	top(n - 1, temp, to, from);// 옮긴 n-1개를 2 -> 3으로 이동하는 재귀 호출
+}
+
+int main() {
+	int n, ans;
+	cin >> n;
+	ans = pow(2, n) - 1; 
+	cout << ans << endl;
+	top(n, 1, 3, 2);
+	return 0;
+
+}
+
