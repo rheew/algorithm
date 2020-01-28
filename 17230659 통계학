@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <cmath>
+using namespace std;
+int main() {
+	map<int, int> Map;
+	map<int, int>::iterator iter;
+	int n, sum = 0, max_cnt = 1;
+	vector<int> v;
+	scanf("%d", &n);
+	for (int i = 0; i < n; i++) {
+		int a;
+		scanf("%d", &a);
+		if (Map.find(a) == Map.end())
+		Map.insert(make_pair(a, 1));
+		else {
+			int add = ++Map.find(a)->second;
+			max_cnt = max(add, max_cnt);
+		}
+		sum += a;
+		v.push_back(a);
+		
+	}
+	int r = round(double(sum) / n);
+	printf("%d\n", r);
+
+	sort(v.begin(),v.end());
+	printf("%d\n", v.at(n / 2));
+	int ans = 0;
+	for (iter = Map.begin(); iter != Map.end(); iter++) {
+		if (iter->second == max_cnt) {
+			if (ans != 0) {
+				ans = iter->first;
+				break;
+			}
+			else ans = iter->first;
+		}
+	}
+	printf("%d\n", ans);
+	iter = Map.end();
+	iter--;
+	printf("%d\n", iter->first - Map.begin()->first);
+	return 0;
+}
