@@ -1,0 +1,25 @@
+#include<iostream>
+
+using namespace std;
+
+int main(void){
+	int n, i=665, cnt = 0;
+	cin >> n;
+	
+	while (i++) {
+
+		int find_6 = i;
+		while (find_6) {
+			if (find_6 % 1000 == 666) {
+				cnt++;
+				break;
+			}
+			find_6 = find_6 / 10;
+		}
+		if (cnt == n) {
+			cout << i << endl;
+			break;
+		}
+	}
+	return 0;
+}
