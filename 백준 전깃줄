@@ -1,0 +1,30 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	int N, wire[501][1], dp[501], Max = 1, Max_index = 0;
+
+	fill_n(dp, 501, 1);
+	fill(&wire[0][0],&wire[501][1] , 0);
+	scanf("%d", &N);
+	for (int i = 0; i < N;  i++) {
+		int a;
+		scanf("%d", &a);
+		scanf("%d", &wire[a][0]);
+		Max_index = max(a, Max_index);
+	}
+
+	for (int i = 2; i <= Max_index; i++) {
+		//안겹칠 경우 선택 가능
+		if (wire[i][0] == 0) continue;
+		for (int j = 1; j < i; j++) {
+			if (wire[i][0] - wire[j][0] < 0 || wire[j][0] == 0)continue;
+			dp[i] = max(dp[i], dp[j] + 1);
+		}
+		Max = max(Max, dp[i]);
+	}
+	printf("%d\n", N - Max);
+	return 0;
+}
