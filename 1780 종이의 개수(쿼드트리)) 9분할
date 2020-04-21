@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class Main {
+	static int map[][], answer[];
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		answer = new int[3];
+		map = new int[N][N];
+		
+		for(int i=0; i<N; i++) {
+			for(int j=0; j<N; j++) {
+				map[i][j] = sc.nextInt();
+			}
+		}
+		
+		divide(0,0, N, N);
+		for(int i : answer)
+		System.out.println(i);
+	}
+	public static void divide(int x, int y, int N, int M) {
+		int first = map[x][y];
+		
+		for(int i=x; i<N; i++) {
+			for(int j=y; j<M; j++) {
+				if(first == map[i][j]) continue;
+				divide(x, y, (N+2*x)/3, (M+2*y)/3);
+				divide(x, (M+2*y)/3, (N+2*x)/3, (2*M+y)/3);
+				divide(x, (2*M+y)/3, (N+2*x)/3, M);
+				
+				divide((N+2*x)/3, y, (N*2+x)/3, (M+2*y)/3);
+				divide((N+2*x)/3, (M+2*y)/3, (N*2+x)/3, (2*M+y)/3);
+				divide((N+2*x)/3, (2*M+y)/3, (N*2+x)/3, M);
+				
+				divide((N*2+x)/3, y, N, (M+2*y)/3);
+				divide((N*2+x)/3, (M+2*y)/3, N, (2*M+y)/3);
+				divide((N*2+x)/3, (2*M+y)/3, N, M);
+				return;
+					
+			}
+		}
+		answer[first+1]++;
+		return;
+	}
+}
