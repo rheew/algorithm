@@ -1,0 +1,32 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+int main(void){
+	
+	vector<int>:: iterator low, up;
+	vector<int> v,vnum;
+	int N, M, i, temp;
+	scanf("%d", &N);
+	for (i = 0; i < N; i++) {
+		scanf("%d", &temp);
+		v.push_back(temp);
+	}
+	
+	sort(v.begin(), v.end());
+	scanf("%d", &M);
+	for (i = 0; i < M; i++) {
+		scanf("%d", &temp);
+		vnum.push_back(temp);
+	}
+	
+	for (int i = 0; i < M; i++) {
+		int find = vnum[i];
+		low = lower_bound(v.begin(),v.end(),find);
+		up = upper_bound(v.begin(), v.end(), find);
+		printf("%d ", up - low);
+	}
+
+	return 0;
+}
