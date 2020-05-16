@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+
+class comp implements Comparator<Integer>{
+	public int compare(Integer o1, Integer o2) {
+		return o2 - o1;
+	}
+}
+public class Main {
+	
+	public static void main(String[] args) throws IOException {
+		Scanner sc = new Scanner(System.in);
+		PriorityQueue<Integer> pq = new PriorityQueue<>(new comp());
+		
+		int N = sc.nextInt();
+		for(int i=0; i<N; i++) {
+			int command = sc.nextInt();
+			
+			if(command == 0) {
+				int value = pq.isEmpty() ? 0 : pq.remove();
+				System.out.println(value);
+			}
+			else {
+				pq.add(command);
+			}
+		}
+
+	}
+	                                                          	
+}
