@@ -1,0 +1,17 @@
+def solution(msg):
+    answer = []
+    wordDict = {}
+    for i in range(26):
+        wordDict[chr(i+65)] = len(wordDict) + 1
+
+    while len(msg):
+        for j in range(len(msg), 0, -1):
+            word = msg[:j]
+
+            if word in wordDict:
+                answer.append(wordDict[word])
+                if j != len(msg):
+                    wordDict[word + msg[j]] = len(wordDict) + 1
+                msg = msg[j:]
+                break
+    return answer
